@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:app_ml/widgets/app_bar_search.dart';
+import 'package:app_ml/widgets/app_menu_drawer.dart';
+import 'package:app_ml/pages/home.dart';
+import 'package:app_ml/pages/cart.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,6 +29,9 @@ class _HomeMyAppState extends State<HomeMyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: AppMenuDrawer()
+      ),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
@@ -36,7 +42,11 @@ class _HomeMyAppState extends State<HomeMyApp> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => Cart()
+              ));
+            },
           ),
           IconButton(
             icon: Icon(Icons.search),
@@ -46,9 +56,7 @@ class _HomeMyAppState extends State<HomeMyApp> {
           ),
         ],
       ),
-      body: Center(
-        child: Text('Home Mercado Livre'),
-      ),
+      body: Home(),
     );
   }
 }
